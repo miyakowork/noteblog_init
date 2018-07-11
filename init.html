@@ -21,7 +21,7 @@
     <hr class="hr layui-bg-gray">
     <form class="layui-form" action="">
 
-        <div v-if="step == 1">
+        <div v-show="step == 1">
             <div class="layui-form-item">
                 <label class="layui-form-label">
                     数据库名
@@ -79,7 +79,7 @@
                     表前缀
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" name="dbTablePre" v-model="step1Data.dbTablePrev" required lay-verify="required" placeholder="数据库中的表前缀"
+                    <input type="text" name="dbTablePre" v-model="step1Data.dbTablePre" required lay-verify="required" placeholder="数据库中的表前缀"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -95,7 +95,7 @@
                     站点标题
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" name="dbName" required lay-verify="required" placeholder="网站标题及LOGO处文字"
+                    <input type="text" name="logoText" v-model="step2Data.logoText" required lay-verify="required" placeholder="网站标题及LOGO处文字"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -108,7 +108,7 @@
                     您的用户名
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" name="dbName" required lay-verify="required" placeholder="登录账号"
+                    <input type="text" name="username" v-model="step2Data.username" required lay-verify="required" placeholder="登录账号"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -121,7 +121,7 @@
                     登录密码
                 </label>
                 <div class="layui-input-inline">
-                    <input type="password" name="dbName" required lay-verify="required" placeholder="登录密码"
+                    <input type="password" name="password" v-model="step2Data.password" required lay-verify="required" placeholder="登录密码"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -134,7 +134,7 @@
                     重录密码
                 </label>
                 <div class="layui-input-inline">
-                    <input type="password" name="dbName" required lay-verify="required" placeholder="重复输入上面的密码"
+                    <input type="password" name="repeatPass" v-model="step2Data.repeatPass" required lay-verify="required" placeholder="重复输入上面的密码"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -147,7 +147,7 @@
                     电子邮件
                 </label>
                 <div class="layui-input-inline">
-                    <input type="password" name="dbName" required lay-verify="required" placeholder="输入您的电子邮件"
+                    <input type="text" name="email" v-model="step2Data.email" required lay-verify="required" placeholder="输入您的电子邮件"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -162,10 +162,10 @@
 
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <a class="layui-btn" @click="testMySQL" v-if="step == 1">测试MySQL连接</a>
                 <a class="layui-btn" @click="nextStep" v-if="step == 1">下一步</a>
+                <a class="layui-btn" @click="testMySQL" v-if="step == 1">测试连接</a>
                 <a class="layui-btn layui-btn-normal" @click="prevStep" v-if="step == 2">上一步</a>
-                <button class="layui-btn layui-btn-danger" lay-submit lay-filter="formDemo" v-if="step == 2">立即提交
+                <button class="layui-btn layui-btn-danger" lay-submit lay-filter="nbInit" v-if="step == 2">立即提交
                 </button>
             </div>
         </div>
